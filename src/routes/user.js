@@ -6,5 +6,6 @@ Route
     .all('/*')
     .post('/login', userController.login)
     .post('/register', userController.register)
+    .post('/logout', userController.register)
 
 module.exports = Route;
