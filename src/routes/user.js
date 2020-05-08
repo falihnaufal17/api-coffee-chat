@@ -6,6 +6,6 @@ Route
     .all('/*')
     .post('/login', userController.login)
     .post('/register', userController.register)
-    .post('/logout/:id', userController.register)
+    .patch('/logout/:id', userController.logout)
 
 module.exports = Route;
