@@ -45,4 +45,15 @@ module.exports = {
             })
         })
     },
+    getProfile: (id) => {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT * FROM users WHERE id = ?`, id, (err, result) => {
+                if (!err) {
+                    resolve(result)
+                } else {
+                    reject(err)
+                }
+            })
+        })
+    }
 }

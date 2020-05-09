@@ -96,4 +96,20 @@ module.exports = {
                 console.log(error)
             })
     },
+    getProfile: (req, res) => {
+        const id = req.params.id
+
+        userModel.getProfile(id)
+            .then((response) => {
+                let dataUser = response[0];
+                delete dataUser.token;
+                delete dataUser.salt;
+                delete dataUser.password;
+
+                miscHelper.response(res, dataUser, 200)
+            })
+            .catch((error) => {
+                miscHelper.response(res, "", 400, error)
+            })
+    }
 }
