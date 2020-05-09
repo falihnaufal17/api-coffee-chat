@@ -19,5 +19,21 @@ module.exports = {
             console.log('Token Stored! ' + token)
             next();
         }
+    },
+
+    accessToken: (req, res, next) => {
+        const secretKey = process.env.SECRET_KEY
+        const accessToken = req.token
+        const userToken = req.headers['x-control-user']
+
+        jwt.verify(accessToken, secretKey, (err, decoded) => {
+            if (err && err.name === 'TokenExpiredError') return miscHelper.response(res, null, 401, 'Token Expired!')
+
+            if (err && err.name === 'JsonWebTokenError') return miscHelper.response(res, null, 401, 'Invalid Token')
+
+            if (parseInt(userToken) !== parseInt(decoded.id)) return miscHelper.response(res, null, 401, 'Invalid User Token!')
+            console.log(decoded)
+            next()
+        })
     }
 }
