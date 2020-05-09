@@ -62,7 +62,7 @@ module.exports = {
                             age: dataUser.age,
                             created_at: dataUser.created_at,
                             updated_at: dataUser.updated_at
-                        }, process.env.SECRET_KEY, { expiresIn: '30d' })
+                        }, process.env.SECRET_KEY, { expiresIn: '24H' })
 
                         const token = dataUser.token;
                         delete dataUser.salt;

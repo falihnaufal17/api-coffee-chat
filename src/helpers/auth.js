@@ -5,7 +5,7 @@ const allowedAccess = process.env.REQUEST_HEADERS;
 
 module.exports = {
     authorization: (req, res, next) => {
-        const headerAuth = req.headers['Authorization']
+        const headerAuth = req.headers['authorization']
         const headerSecret = req.headers['x-access-token']
 
         if (headerAuth !== allowedAccess) {
