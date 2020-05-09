@@ -5,9 +5,9 @@ const auth = require('../helpers/auth');
 
 Route
     .all('/*')
-    .get('/profile/:id', auth.authorization, userController.getProfile)
+    .get('/profile/:id', auth.authorization, auth.accessToken, userController.getProfile)
     .post('/login', userController.login)
     .post('/register', userController.register)
-    .patch('/logout/:id', auth.authorization, userController.logout)
+    .patch('/logout/:id', auth.authorization, auth.accessToken, userController.logout)
 
 module.exports = Route;
